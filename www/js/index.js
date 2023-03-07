@@ -42,10 +42,25 @@ addAlumns = () => {
 }
 
 showAlumns = () => {
+    clearObj();
+    const divAlumnos = document.querySelector('.alumnos');
+        listaAlumnos.forEach(alumno =>{
+        const{id,nombre,apellido}= alumno;
+          const parrafo = document.createElement('p');      parrafo.textContent = `${id} - ${nombre} - ${apellido} - `;      parrafo.dataset.id = id;
+          const editarBoton = document.createElement('button');      editarBoton.onclick = () => cargarAlumno(alumno);      editarBoton.textContent = 'Editar';      editarBoton.classList.add('btn', 'btn-editar');      parrafo.append(editarBoton);
+          const eliminarBoton = document.createElement('button');      eliminarBoton.onclick = () => eliminarAlumno(id);      eliminarBoton.textContent = 'Eliminar';      eliminarBoton.classList.add('btn', 'btn-eliminar');      parrafo.append(eliminarBoton);
+          const hr = document.createElement('hr')
+          divAlumnos.appendChild(parrafo)      
+          divAlumnos.appendChild(hr)  
+          })  
+        }
 
 }
+
 clearObj = () => {
     objAlumno.id ='';
     objAlumno.name = '';
     objAlumno.lastName = '';
 }
+
+
